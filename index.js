@@ -26,7 +26,7 @@ app.post('/zapier-webhook', async (req, res) => {
     res.status(200).json(response.data); // Return Zapier's response to the frontend
   } catch (error) {
     console.error('Error forwarding data to Zapier:', error);
-    res.status(500).json({ error: 'Failed to forward data to Zapier' });
+    res.status(404).json({ error: error.response?.data || 'Error forwarding data to Zapier' });
   }
 });
 
