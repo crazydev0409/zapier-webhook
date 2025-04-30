@@ -8,7 +8,9 @@ const port = 5000;  // You can set any port here
 // Middleware to handle JSON body
 app.use(express.json());
 app.use(cors()); // To allow cross-origin requests
-
+app.use(bodyParser.json());
+app.use(bodyParser.json({ limit: "50mb" }));
+app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
 // Route to handle requests from the frontend
 app.post('/zapier-webhook', async (req, res) => {
   const { zapierUrl, ...formData } = req.body;
